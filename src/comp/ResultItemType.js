@@ -24,9 +24,9 @@ class ResultItemType0 extends React.Component {
 class ResultItemType extends React.Component {
   render () {
     return (
-      <strong>
+      <span>
         {this.props.name}:
-      </strong>
+      </span>
     )
   }
 }
