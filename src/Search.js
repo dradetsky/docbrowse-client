@@ -4,13 +4,16 @@ import { ResultGroup } from './comp'
 import client from './client'
 
 class Search extends React.Component {
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
     this.state = {
       data: [],
     }
     // i forget why we do this
     this.handleTyping = this.handleTyping.bind(this)
+    if (props.initQuery) {
+      this.queryAndDisplay(props.initQuery)
+    }
   }
 
   handleTyping (e) {
@@ -35,6 +38,7 @@ class Search extends React.Component {
           id='box'
           ref={(box) => { this.box = box }}
           type='text'
+          defaultValue={this.props.initQuery}
           onChange={this.handleTyping} />
         <ResultGroup data={this.state.data} />
       </div>
