@@ -1,27 +1,31 @@
 import React from 'react'
-import colorspace from 'colorspace'
+import { hex } from './color-hexer'
 
-
-class ResultItemType0 extends React.Component {
+class ResultItemType extends React.Component {
   color () {
-    return colorspace(this.props.name)
+    return hex(this.props.name)
   }
 
-  colorStyle () {
-    return {color: this.color()}
+  // srsly, typestyle, asap
+  style () {
+    return {
+      paddingLeft: 1,
+      paddingRight: 1,
+      borderRadius: 3,
+      background: this.color()
+    }
   }
 
   render () {
     return (
-      <strong style={this.colorStyle()}>
-        {this.props.name}:
-        <span> </span>
-      </strong>
+      <span style={this.style()}>
+        {this.props.name}
+      </span>
     )
   }
 }
 
-class ResultItemType extends React.Component {
+class ResultItemType1 extends React.Component {
   render () {
     return (
       <span>

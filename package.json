@@ -8,6 +8,7 @@
     "react": "^16.8.6",
     "react-columned": "^1.1.2",
     "react-dom": "^16.8.6",
+    "react-hotkeys": "^2.0.0-pre7",
     "react-scripts": "3.0.1",
     "string-to-hex-code-color": "^1.0.8",
     "typeface-open-sans": "^0.0.54",

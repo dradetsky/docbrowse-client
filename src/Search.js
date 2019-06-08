@@ -1,4 +1,5 @@
 import React from 'react'
+import { HotKeys } from 'react-hotkeys'
 
 import { ResultGroup } from './comp'
 import client from './client'
@@ -13,6 +14,23 @@ class Search extends React.Component {
     this.handleTyping = this.handleTyping.bind(this)
     if (props.initQuery) {
       this.queryAndDisplay(props.initQuery)
+    }
+  }
+
+  // still req'd with autoFocus? or even relevant?
+  componentDidUpdate () {
+    this.box.focus()
+  }
+
+  get isSearchBoxFocused () {
+    return (this.box === document.activeElement)
+  }
+
+  toggleBoxFocus () {
+    if (this.isSearchBoxFocused) {
+      this.notBox.focus()
+    } else {
+      this.box.focus()
     }
   }
 
@@ -31,17 +49,28 @@ class Search extends React.Component {
     }
   }
 
+  handlers = {
+    SWITCH_FOCUS: event => {
+      this.toggleBoxFocus()
+    }
+  }
+
   render () {
     return (
-      <div>
-        <input
-          id='box'
-          ref={(box) => { this.box = box }}
-          type='text'
-          defaultValue={this.props.initQuery}
-          onChange={this.handleTyping} />
-        <ResultGroup data={this.state.data} />
-      </div>
+      <HotKeys handlers={this.handlers}>
+        <div>
+          <div id='notBox'
+               tabindex={-99}
+               ref={(notBox) => { this.notBox = notBox }} />
+          <input autoFocus
+                 id='box'
+                 ref={(box) => { this.box = box }}
+                 type='text'
+                 defaultValue={this.props.initQuery}
+                 onChange={this.handleTyping} />
+          <ResultGroup data={this.state.data} />
+        </div>
+      </HotKeys>
     )
   }
 }
