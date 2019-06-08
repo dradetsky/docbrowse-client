@@ -4,7 +4,6 @@ import { HotKeys } from 'react-hotkeys'
 import Search from './Search'
 import './typo'
 import ShowKeys from './keys/ShowKeys'
-import keymap from './keys/keymap'
 
 class Main extends React.Component {
   constructor (props) {
